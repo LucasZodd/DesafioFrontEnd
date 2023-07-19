@@ -1,0 +1,89 @@
+<div class="main-container">
+
+  <div class="card-container">
+
+    <div class="pesquisa-container">
+
+      <mat-form-field class="data-container">
+        <mat-label>Data de inicio:</mat-label>
+        <input matInput [matDatepicker]="dataInicio" [(ngModel)]="dataInicioFilter">
+        <mat-datepicker-toggle matIconSuffix [for]="dataInicio"></mat-datepicker-toggle>
+        <mat-datepicker #dataInicio>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="data-container">
+        <mat-label>Data de fim:</mat-label>
+        <input matInput [matDatepicker]="dataFim" [(ngModel)]="dataFimFilter">
+        <mat-datepicker-toggle matIconSuffix [for]="dataFim"></mat-datepicker-toggle>
+        <mat-datepicker #dataFim>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="nome-container" appearance="fill">
+        <mat-label>Nome do operador transacionado:</mat-label>
+        <input matInput [(ngModel)]="nomeOperadorFilter">
+      </mat-form-field>
+
+    </div>
+
+    <div class="botao-pesquisa">
+      <button mat-raised-button (click)="pesquisar()">Pesquisar</button>
+    </div>
+
+    <div class="transferencia-container">
+
+      <div class="saldo-total-row mat-elevation-z8">
+        <div class="saldo-total-cell" >
+          Saldo total:
+          <span *ngIf="pesquisado">R$ {{ valorTotalFormatado }}</span>
+        </div>
+
+        <div class="saldo-total-cell">
+          Saldo no período:
+          <span *ngIf="pesquisado">R$ {{ valorTotalFormatado }}</span>
+        </div>
+      </div>
+
+      <table mat-table at-table [dataSource]="dataSource" matSort
+             multiTemplateDataRows class="mat-elevation-z8">
+
+        <ng-container matColumnDef="dataTransferencia">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Dados</th>
+          <td mat-cell *matCellDef="let element">{{ element.dataTransferencia | date: 'dd/MM/yyyy' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="valor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Valencia</th>
+          <td mat-cell *matCellDef="let element">{{ element.valor }}</td>
+        </ng-container>
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+          <td mat-cell *matCellDef="let element">{{ element.tipo }}</td>
+        </ng-container>
+        <ng-container matColumnDef="nomeOperador">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome do operador transacionado</th>
+          <td mat-cell *matCellDef="let element">{{ element.nomeOperador }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="totalSize"
+          showFirstLastButtons class="mat-elevation-z8">
+      </mat-paginator>
+
+    </div>
+
+  </div>
+
+</div>

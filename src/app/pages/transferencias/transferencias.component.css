@@ -1,0 +1,49 @@
+.main-container {
+  display: flex;
+}
+
+.main-container {
+  margin: 10em 30em;
+  padding: 40px 10px;
+
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ddd ;
+  border-radius: 10px;
+}
+
+.data-container {
+  padding-right: 30px;
+}
+
+.nome-container {
+  width: 350px;
+}
+
+.pesquisa-container {
+  padding-bottom: 20px;
+}
+
+.botao-pesquisa {
+  display: flex;
+  justify-content: right;
+}
+
+.transferencia-container {
+  padding-top: 40px;
+}
+
+.saldo-total-row {
+  display: flex;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.saldo-total-cell {
+  flex: 1;
+  padding: 8px;
+  font-weight: bold;
+}
+
